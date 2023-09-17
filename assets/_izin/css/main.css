@@ -1,0 +1,28 @@
+/* Gaya tampilan halaman */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E6E6FA; /* Warna ungu muda */
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFF; /* Warna putih */
+}
+h1 {
+    text-align: center;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    font-weight: bold;
+}
+.custom-btn {
+    background-color: #716aca;
+    border-color: #716aca;
+}
+.custom-btn:hover {
+    background-color: #5b4d9f;
+    border-color: #5b4d9f;
+}

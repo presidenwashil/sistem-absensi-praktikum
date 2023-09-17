@@ -11,7 +11,7 @@
                 <i class="flaticon-right-arrow"></i>
               </li>
               <li class="nav-item">
-                <a href="#">Data Umum</a>
+                <a href="#">Master</a>
               </li>
               <li class="separator">
                 <i class="flaticon-right-arrow"></i>
@@ -26,7 +26,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">
-                     <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addSemester"><i class="fa fa-plus"></i> Tambah</a>
+                     <a href="" class="btn btn-secondary btn-sm text-white" data-toggle="modal" data-target="#addSemester"><i class="fa fa-plus"></i> Tambah</a>
                   </div>
                 </div>
                     <div class="card-body">

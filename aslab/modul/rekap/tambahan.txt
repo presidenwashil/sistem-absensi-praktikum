@@ -1,0 +1,52 @@
+bikin namanya berwarna merah jika alfa 3 kali
+
+
+<tr>
+	<td colspan="3" align="center">Tanggal Pertemuan</td>
+	<?php 
+	for ($i = 1; $i <=$tglTerakhir ; $i++) { ?> 
+	<td align="center">
+	<em style="font: 11px;">
+	<?php 
+	$ket = mysqli_query($con,"SELECT * FROM _logabsensi
+	INNER JOIN tb_mengajar ON _logabsensi.id_mengajar=tb_mengajar.id_mengajar
+	INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
+	INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
+	WHERE _logabsensi.pertemuan_ke='$i' AND _logabsensi.id_siswa='$ds[id_siswa]' AND _logabsensi.id_mengajar='$_GET[pelajaran]' AND tb_mengajar.id_mkelas='$_GET[kelas]'  AND tb_thajaran.status=1 AND tb_semester.status=1 GROUP BY pertemuan_ke ");
+	foreach ($ket as $h)
+	$tgl= date('d m Y',strtotime($h['tgl_absen']));
+	// echo "".namahari($tgl).",";
+	 echo $tgl;
+
+	?>
+	</em>
+
+	</td>
+
+	<?php } ?>
+</tr>
+
+<tr>
+		<!-- style="height: 150px;" -->
+	<td colspan="3" align="center">Asisten</td>
+	<?php 
+	for ($i = 1; $i <=$tglTerakhir ; $i++) { ?> 
+	<td align="center">
+	<em style="font: 11px;">
+	<?php 
+	$ket = mysqli_query($con,"SELECT * FROM _logabsensi
+	INNER JOIN tb_mengajar ON _logabsensi.id_mengajar=tb_mengajar.id_mengajar
+	INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
+	INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
+	WHERE _logabsensi.pertemuan_ke='$i' AND _logabsensi.id_siswa='$ds[id_siswa]' AND _logabsensi.id_mengajar='$_GET[pelajaran]' AND tb_mengajar.id_mkelas='$_GET[kelas]'  AND tb_thajaran.status=1 AND tb_semester.status=1 GROUP BY pertemuan_ke ");
+	foreach ($ket as $h)
+	$kodeaslab= ($h['kode_aslab']);
+	 echo $kodeaslab;
+
+	?>
+	</em>
+
+	</td>
+
+	<?php } ?>
+</tr>

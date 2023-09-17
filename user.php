@@ -13,20 +13,20 @@ session_start();
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
-    WebFont.load({
-        google: {
-            "families": ["Lato:300,400,700,900"]
-        },
-        custom: {
-            "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
-                "simple-line-icons"
-            ],
-            urls: ['assets/css/fonts.min.css']
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        }
-    });
+        WebFont.load({
+            google: {
+                "families": ["Lato:300,400,700,900"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
+                    "simple-line-icons"
+                ],
+                urls: ['assets/css/fonts.min.css']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
     </script>
 
     <!-- CSS Files -->
@@ -40,10 +40,10 @@ session_start();
 <body>
 
     <div class="wrapper overlay-sidebar">
-        <div class="main-header" style="background-color: #1269DB;">
+        <div class="main-header" style="background-color: #716aca;">
             <!-- Logo Header -->
             <div class="container">
-                <div class="logo-header" data-background-color="blue2">
+                <div class="logo-header" data-background-color="purple2">
 
                     <a href="index.php">
                         <img src="assets/img/mts.png" alt="navbar brand" class="navbar-brand" width="40">
@@ -55,7 +55,7 @@ session_start();
         </div>
         <div class="main-panel">
             <div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-secondary-gradient">
                     <div class="container">
                         <div class="page-inner py-5">
                             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
@@ -83,11 +83,11 @@ session_start();
                                     <ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center"
                                         id="pills-tab-with-icon" role="tablist">
                                         <!-- <li class="nav-item">
-											<a class="nav-link active" href="#pills-home-icon">
-												<i class="flaticon-home"></i>
-												Home
-											</a>
-										</li> -->
+                                            <a class="nav-link active" href="#pills-home-icon">
+                                                <i class="flaticon-home"></i>
+                                                Home
+                                            </a>
+                                        </li> -->
                                         <li class="nav-item">
                                             <a class="nav-link" href="index.php">
                                                 <i class="flaticon-profile-1"></i>
@@ -95,11 +95,11 @@ session_start();
                                             </a>
                                         </li>
                                         <!-- <li class="nav-item">
-											<a class="nav-link" href="view/admin.php">
-												<i class="flaticon-profile"></i>
-												Admin
-											</a>
-										</li> -->
+                                            <a class="nav-link" href="view/admin.php">
+                                                <i class="flaticon-profile"></i>
+                                                Admin
+                                            </a>
+                                        </li> -->
                                     </ul>
 
                                 </div>
@@ -123,7 +123,9 @@ session_start();
     <footer class="footer">
         <div class="container">
             <div class="copyright ml-auto">
-                &copy; <?php echo date('Y');?> Absensi Praktikum STMIK Widya Cipta Dharma (<a href="index.php">Raihan Presiden Washil </a>
+                &copy;
+                <?php echo date('Y'); ?> Absensi Praktikum STMIK Widya Cipta Dharma (<a href="index.php">Raihan Presiden
+                    Washil </a>
                 | 2023)
             </div>
         </div>

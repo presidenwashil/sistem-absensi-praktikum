@@ -26,7 +26,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">
-                     <a href="?page=aslab&act=add" class="btn btn-primary btn-sm text-white"><i class="fa fa-plus"></i> Tambah</a>
+                     <a href="?page=aslab&act=add" class="btn btn-secondary btn-sm text-white"><i class="fa fa-plus"></i> Tambah</a>
                   </div>
                 </div>
                 <div class="card-body">

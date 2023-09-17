@@ -7,27 +7,27 @@ include 'config/db.php';
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Presensi Siswa</title>
+    <title>Absensi Praktikum</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="assets/img/icon.ico" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
-    WebFont.load({
-        google: {
-            "families": ["Lato:300,400,700,900"]
-        },
-        custom: {
-            "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
-                "simple-line-icons"
-            ],
-            urls: ['assets/css/fonts.min.css']
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        }
-    });
+        WebFont.load({
+            google: {
+                "families": ["Lato:300,400,700,900"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
+                    "simple-line-icons"
+                ],
+                urls: ['assets/css/fonts.min.css']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
     </script>
 
     <!-- CSS Files -->
@@ -41,14 +41,13 @@ include 'config/db.php';
 <body>
 
     <div class="wrapper overlay-sidebar">
-        <div class="main-header" style="background-color: #1269DB;">
+        <div class="main-header" style="background-color: #716aca;">
             <!-- Logo Header -->
             <div class="container">
-                <div class="logo-header" data-background-color="blue2">
+                <div class="logo-header" data-background-color=" #716aca">
 
                     <a href="index.php">
-                        <img src="assets/img/mts.png" alt="navbar brand" class="navbar-brand" width="40">
-                        <b class="text-white">Presensi Siswa</b>
+                        <b class="text-white">Absensi Praktikum</b>
                     </a>
                 </div>
             </div>
@@ -58,17 +57,17 @@ include 'config/db.php';
 
         <div class="main-panel">
             <div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-secondary-gradient">
                     <div class="container">
                         <div class="page-inner py-5">
                             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                                 <div>
-                                    <h2 class="text-white pb-2 fw-bold">MTs INSAN KREASI</h2>
+                                    <h2 class="text-white pb-2 fw-bold">LABCOM WICIDA</h2>
                                     <!-- <h5 class="text-white op-7 mb-2">Absen Lebih mudah gunakan Aplikasi Absensi</h5> -->
                                 </div>
                                 <div class="ml-md-auto py-2 py-md-0">
-                                    <a href="#" class="btn btn-white btn-border btn-round mr-2">Kp. Ciapuas RT/RW 07/02
-                                        Ds. Batok Kec. Tenjo Kab. Bogor 16370 Prov. Jawa Barat</a>
+                                    <a href="#" class="btn btn-white btn-border btn-round mr-2">Jl. M. Yamin, Gn. Kelua,
+                                        Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75123</a>
                                     <!-- <a href="view/siswa.php" class="btn btn-secondary btn-round">Ajukan Izin</a> -->
                                 </div>
                             </div>
@@ -102,22 +101,22 @@ include 'config/db.php';
                                         <div class="form-group">
                                             <button class="btn btn-primary btn-block" type="submit"><i
                                                     class="flaticon-up-arrow-2"></i> Login</button>
-                                            <a href="../index.php" class="btn btn-danger btn-block"><i
+                                            <a href="index.php" class="btn btn-danger btn-block"><i
                                                     class="flaticon-back"></i> Back</a>
                                         </div>
                                     </form>
 
-                                    <?php 
-									if ($_SERVER['REQUEST_METHOD']=='POST') {
-									$pass= sha1($_POST['password']);
-									$sqlCek = mysqli_query($con,"SELECT * FROM tb_admin WHERE username='$_POST[username]' AND password='$pass' AND aktif='Y'");
-									$jml = mysqli_num_rows($sqlCek);
-									$d = mysqli_fetch_array($sqlCek);
-									
-									if ($jml > 0) {
-									$_SESSION['admin']= $d['id_admin'];								
-									
-									echo "
+                                    <?php
+                                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                        $pass = sha1($_POST['password']);
+                                        $sqlCek = mysqli_query($con, "SELECT * FROM tb_admin WHERE username='$_POST[username]' AND password='$pass' AND aktif='Y'");
+                                        $jml = mysqli_num_rows($sqlCek);
+                                        $d = mysqli_fetch_array($sqlCek);
+
+                                        if ($jml > 0) {
+                                            $_SESSION['admin'] = $d['id_admin'];
+
+                                            echo "
 									<script type='text/javascript'>
 									setTimeout(function () { 
 									
@@ -134,12 +133,12 @@ include 'config/db.php';
 									window.location.replace('./admin/dashboard.php');
 									} ,3000);   
 									</script>";
-									
-									
-									
-									
-									}else{
-									echo "
+
+
+
+
+                                        } else {
+                                            echo "
 									<script type='text/javascript'>
 									setTimeout(function () { 
 									
@@ -156,7 +155,7 @@ include 'config/db.php';
 									window.location.replace('./log.php');
                                     } ,3000);
                                     </script>";
-                                    }
+                                        }
                                     }
                                     ?>
 
@@ -176,7 +175,8 @@ include 'config/db.php';
             <footer class="footer">
                 <div class="container">
                     <div class="copyright ml-auto">
-                        &copy; <?php echo date('Y');?> Absensi Siswa.<a href="index.php">Elfita Diana </a> | 2515048
+                        &copy;
+                        <?php echo date('Y'); ?> Absensi Praktikum<a href="index.php">Raihan Presiden Washil</a>
                     </div>
                 </div>
             </footer>

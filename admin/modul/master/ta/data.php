@@ -1,6 +1,6 @@
 <div class="page-inner">
           <div class="page-header">
-            <h4 class="page-title">Tahun Pelajaran</h4>
+            <h4 class="page-title">Tahun Ajaran</h4>
             <ul class="breadcrumbs">
               <li class="nav-home">
                 <a href="#">
@@ -11,13 +11,13 @@
                 <i class="flaticon-right-arrow"></i>
               </li>
               <li class="nav-item">
-                <a href="#">Data Umum</a>
+                <a href="#">Master</a>
               </li>
               <li class="separator">
                 <i class="flaticon-right-arrow"></i>
               </li>
               <li class="nav-item">
-                <a href="#">Daftar Tahun Pelajaran</a>
+                <a href="#">Daftar Tahun Ajaran</a>
               </li>
             </ul>
           </div>
@@ -26,7 +26,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">
-                     <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addTahun Pelajaran"><i class="fa fa-plus"></i> Tambah</a>
+                     <a href="" class="btn btn-secondary btn-sm text-white" data-toggle="modal" data-target="#addTahun Pelajaran"><i class="fa fa-plus"></i> Tambah</a>
                   </div>
                 </div>
                 <div class="card-body">
@@ -36,7 +36,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>TAHUN PELALAJARAN</th>
+                            <th>TAHUN AJARAN</th>
                             <th>STATUS</th>
                             <th>OPSI</th>
                         </tr>
@@ -78,8 +78,10 @@
                             <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?=$t['id_thajaran'] ?>"><i class="far fa-edit"></i> Edit</a>
                             <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin Hapus Data ??')" href="?page=master&act=delta&id=<?=$t['id_thajaran'] ?>"><i class="fas fa-trash"></i> Del</a>
 
+
+                            
                             <!-- Modal -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit<?=$t['id_thajaran'] ?>" class="modal fade" style="display: none;">
+              <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit<?=$t['id_thajaran'] ?>" class="modal fade" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
            <div class="modal-header">

@@ -1,0 +1,215 @@
+<div class="card">
+	<div class="card-body">
+
+		<h4 class="card-title">Kehadiran | <b
+				style="text-transform: uppercase;"><code> <?= $data['nama_mahasiswa'] ?> </code></b></h4>
+		<hr>
+		<div class="row">
+			<?php
+			// tampilkan data absen setiap bulan, berdasarkan tahun ajaran yg aktif
+			$qry = mysqli_query($con, "SELECT * FROM _logabsensi
+				INNER JOIN tb_mengajar ON _logabsensi.id_mengajar=tb_mengajar.id_mengajar
+				INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
+				INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
+				WHERE _logabsensi.id_mahasiswa='$data[id_mahasiswa]' and tb_thajaran.status=1 and tb_semester.status=1
+				GROUP BY MONTH(tgl_absen) ORDER BY MONTH(tgl_absen) DESC
+			 ");
+
+			// foreach ($qry as $bulan) {
+// 	echo date('m',strtotime($bulan['tgl_absen']));
+// }
+			
+
+			foreach ($qry as $bulan) { ?>
+				<?php
+				$bulan = date('m', strtotime($bulan['tgl_absen']));
+
+
+				?>
+
+
+				<div class="col-xl-12">
+					<div class="card text-left">
+						<div class="card-body">
+							Senin, 10-01-2019 <b>Hadir</b>
+							<b class="text-primary" style="text-transform: uppercase;">BULAN
+								<?= namaBulan($bulan); ?>
+								<?= date('Y') ?>
+							</b>
+							<hr>
+							<table cellpadding="5" width="100%">
+								<tr>
+									<td>Hadir</td>
+									<td>:</td>
+									<td>
+										<?php
+										$hadir = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(ket) AS hadir FROM _logabsensi WHERE id_mahasiswa='$data[id_mahasiswa]' and ket='H' and MONTH(tgl_absen)='$bulan' "));
+										echo $hadir['hadir'];
+										?>
+									</td>
+								</tr>
+								<tr>
+									<td>Sakit</td>
+									<td>:</td>
+									<td>
+										<?php
+										$sakit = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(ket) AS sakit FROM _logabsensi WHERE id_mahasiswa='$data[id_mahasiswa]' and ket='S' and MONTH(tgl_absen)='$bulan' "));
+										echo $sakit['sakit'];
+										?>
+									</td>
+								</tr>
+								<tr>
+									<td>Izin</td>
+									<td>:</td>
+									<td>
+										<?php
+										$izin = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(ket) AS izin FROM _logabsensi WHERE id_mahasiswa='$data[id_mahasiswa]' and ket='I' and MONTH(tgl_absen)='$bulan' "));
+										echo $izin['izin'];
+										?>
+									</td>
+								</tr>
+								<tr>
+									<td>Absen</td>
+									<td>:</td>
+									<td>
+										<?php
+										$alfa = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(ket) AS alfa FROM _logabsensi WHERE id_mahasiswa='$data[id_mahasiswa]' and ket='A' and MONTH(tgl_absen)='$bulan' "));
+										echo $alfa['alfa'];
+										?>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<a href="javascript:history.back()" class="btn btn-default btn-block"><i class="fas fa-arrow-circle-left"></i>
+	Kembali</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <div class="page-inner">
+
+	<div class="page-header">
+		<h4 class="page-title">Jadwal Praktikum</h4>
+		<ul class="breadcrumbs">
+			<li class="nav-home">
+				<a href="#">
+					<i class="flaticon-home"></i>
+				</a>
+			</li>
+			<li class="separator">
+				<i class="flaticon-right-arrow"></i>
+			</li>
+			<li class="nav-item">
+				<a href="#">Jadwal Praktikum</a>
+			</li>
+			<li class="separator">
+				<i class="flaticon-right-arrow"></i>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="row mt-4">
+
+		<?php
+		foreach ($kehadiran as $jd) {
+			?>
+			<div class="col-md-5 col-xs-12">
+
+				<div class="alert alert-info alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+					<strong>
+						<h3>
+							<?= $jd['mapel']; ?>
+						</h3>
+					</strong>
+					<hr>
+					<ul>
+						<li>
+							Hari :
+							<?= $jd['hari']; ?>
+						</li>
+						<li>
+							Jam Ke :
+							<?= $jd['jamke']; ?>
+						</li>
+						<li>
+							Waktu :
+							<?= $jd['jam_mengajar']; ?>
+						</li>
+						<li>
+							Lab :
+							<?= $jd['nama_lab']; ?>
+						</li>
+						<li>
+							Kelas :
+							<?= $jd['nama_kelas']; ?>
+						</li>
+					</ul>
+					<hr>
+					<a href="?page=absen&pelajaran=<?= $jd['id_mkelas'] ?>" class="btn btn-default btn-block text-left">
+						<i class="fas fa-clipboard-check"></i>
+						Lihat Kehadiran
+					</a>
+				</div>
+			</div>
+		<?php } ?>
+
+	</div>
+	<a href="javascript:history.back()" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
+</div> -->
+
+
+
+
+<?php
+// tampilkan data kehadiran
+$kehadiran = mysqli_query($con, "SELECT l.id_mahasiswa, l.tgl_absen, l.ket, l.materi
+FROM _logabsensi l
+INNER JOIN tb_mahasiswa_kelas mk ON l.id_mahasiswa = mk.id_mahasiswa
+WHERE l.id_mahasiswa = '$data[id_mahasiswa]' AND mk.id_mkelas = '$_GET[pelajaran]'");
+
+foreach ($kehadiran as $data) {
+	// Tampilkan data kehadiran sesuai kebutuhan
+	$id_mahasiswa = $data['id_mahasiswa'];
+	$tgl_absen = $data['tgl_absen'];
+	$ket = $data['ket'];
+	$materi = $data['materi'];
+
+	// Lakukan sesuatu dengan data kehadiran
+	// ...
+}
+?>

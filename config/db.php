@@ -1,12 +1,13 @@
 <?PHP error_reporting(E_ALL ^ (E_NOTICE | E_WARNING)); ?>
 <?php
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-  $con = new mysqli ("localhost","root","","db_sipl") or die(mysqli_error($con));
+$con = new mysqli("localhost", "root", "", "db_sipl") or die(mysqli_error($con));
 
 
 
-   function namaBulan($angka){
+function namaBulan($angka)
+{
 	switch ($angka) {
 		case '1':
 			$bulan = "Januari";
@@ -51,11 +52,12 @@
 	return $bulan;
 }
 
-function tglIndonesia($tgl){
-	$tanggal = substr($tgl,8,2);
-	$bulan = namaBulan(substr($tgl,5,2));
-	$tahun = substr($tgl,0,4);
-	return $tanggal.' '.$bulan.' '.$tahun;		 
+function tglIndonesia($tgl)
+{
+	$tanggal = substr($tgl, 8, 2);
+	$bulan = namaBulan(substr($tgl, 5, 2));
+	$tahun = substr($tgl, 0, 4);
+	return $tanggal . ' ' . $bulan . ' ' . $tahun;
 }
 
 
@@ -63,66 +65,83 @@ function tglIndonesia($tgl){
 // function untuk menampilkan nama hari ini dalam bahasa indonesia
 // di buat oleh malasngoding.com
 
-function hari_ini(){
-	$hari = date ("D");
+function hari_ini()
+{
+	$hari = date("D");
 
-	switch($hari){
+	switch ($hari) {
 		case 'Sun':
 			$hari_ini = "Minggu";
-		break;
+			break;
 
-		case 'Mon':			
+		case 'Mon':
 			$hari_ini = "Senin";
-		break;
+			break;
 
 		case 'Tue':
 			$hari_ini = "Selasa";
-		break;
+			break;
 
 		case 'Wed':
 			$hari_ini = "Rabu";
-		break;
+			break;
 
 		case 'Thu':
 			$hari_ini = "Kamis";
-		break;
+			break;
 
 		case 'Fri':
 			$hari_ini = "Jumat";
-		break;
+			break;
 
 		case 'Sat':
 			$hari_ini = "Sabtu";
-		break;
-		
+			break;
+
 		default:
-			$hari_ini = "Tidak di ketahui";		
-		break;
+			$hari_ini = "Tidak di ketahui";
+			break;
 	}
 
-	return "<b>" .$hari_ini . "</b>";
+	return "<b>" . $hari_ini . "</b>";
 
 }
 
 
-function namahari($tanggalnya){
-    //fungsi mencari namahari
-    //format $tgl YYYY-MM-DD
-    //harviacode.com
-    $tgl=substr($tanggalnya,8,2);
-    $bln=substr($tanggalnya,5,2);
-    $thn=substr($tanggalnya,0,4);
-    $info=date('w', mktime(0,0,0,$bln,$tgl,$thn));
-    switch($info){
-        case '0': return "Minggu"; break;
-        case '1': return "Senin"; break;
-        case '2': return "Selasa"; break;
-        case '3': return "Rabu"; break;
-        case '4': return "Kamis"; break;
-        case '5': return "Jumat"; break;
-        case '6': return "Sabtu"; break;
-    };
+function namahari($tanggalnya)
+{
+	//fungsi mencari namahari
+	//format $tgl YYYY-MM-DD
+	//harviacode.com
+	$tgl = substr($tanggalnya, 8, 2);
+	$bln = substr($tanggalnya, 5, 2);
+	$thn = substr($tanggalnya, 0, 4);
+	$info = date('w', mktime(0, 0, 0, $bln, $tgl, $thn));
+	switch ($info) {
+		case '0':
+			return "Minggu";
+			break;
+		case '1':
+			return "Senin";
+			break;
+		case '2':
+			return "Selasa";
+			break;
+		case '3':
+			return "Rabu";
+			break;
+		case '4':
+			return "Kamis";
+			break;
+		case '5':
+			return "Jumat";
+			break;
+		case '6':
+			return "Sabtu";
+			break;
+	}
+	;
 }
 
-            
+
 ?>
