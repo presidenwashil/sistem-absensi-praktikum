@@ -144,33 +144,34 @@ foreach ($kelasMengajar as $d)
 								</div>
 							</div>
 						<?php } ?>
-						<div class="mt-3">
-							<label for="kode_aslab">Pilih Kode Aslab 1:</label>
-							<select class="form-control" id="kode_aslab" name="kode_aslab" required>
+						<div class="mt-3" id="select-container">
+							<label for="kode_aslab">Pilih Kode Aslab:</label>
+							<select class="form-control" id="kode_aslab1" name="kode_aslab[]" required>
+								<option value="" disabled selected>Pilih kode aslab</option>
+								<option value="ER">ER</option>
+								<option value="DF">DF</option>
 								<option value="RN">RN</option>
 								<option value="RZ">RZ</option>
 								<option value="ZD">ZD</option>
+								<option value="TA">TA</option>
+								<option value="FI">FI</option>
+								<option value="AD">AD</option>
+								<option value="NK">NK</option>
+								<option value="DY">DY</option>
+								<option value="SG">SG</option>
+								<option value="BY">BY</option>
+								<option value="FO">FO</option>
+								<option value="FZ">FZ</option>
+								<option value="SP">SP</option>
+								<option value="RF">RF</option>
+								<option value="MC">MC</option>
+								<option value="SK">SK</option>
+								<option value="HF">HF</option>
+								<option value="RG">RG</option>
 								<!-- Tambahkan pilihan kode aslab lainnya sesuai kebutuhan -->
 							</select>
 						</div>
-						<div class="mt-3">
-							<label for="kode_aslab">Pilih Kode Aslab 2:</label>
-							<select class="form-control" id="kode_aslab" name="kode_aslab" required>
-								<option value="RN">RN</option>
-								<option value="RZ">RZ</option>
-								<option value="ZD">ZD</option>
-								<!-- Tambahkan pilihan kode aslab lainnya sesuai kebutuhan -->
-							</select>
-						</div>
-						<div class="mt-3">
-							<label for="kode_aslab">Pilih Kode Aslab 3:</label>
-							<select class="form-control" id="kode_aslab" name="kode_aslab" required>
-								<option value="RN">RN</option>
-								<option value="RZ">RZ</option>
-								<option value="ZD">ZD</option>
-								<!-- Tambahkan pilihan kode aslab lainnya sesuai kebutuhan -->
-							</select>
-						</div>
+
 
 						<div class="mt-3">
 							<input type="text" class="form-control" name="materi"
@@ -198,7 +199,7 @@ foreach ($kelasMengajar as $d)
 			$total = $jumlahSiswa - 1;
 			$today = $_POST['tgl'];
 			$pertemuan = $_POST['pertemuan_ke'];
-			$kode_aslab = $_POST['kode_aslab'];
+			$kode_aslab = implode(",", $_POST['kode_aslab']); // Gabungkan kode aslab dengan tanda koma
 			$materi = $_POST['materi'];
 
 			for ($i = 0; $i <= $total; $i++) {
@@ -207,26 +208,26 @@ foreach ($kelasMengajar as $d)
 				$pelajaran = $_POST['pelajaran'];
 				$ket = $_POST['ket-' . $i];
 
-				$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM _logabsensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_mahasiswa='$id_mahasiswa' "));
+				$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM _logabsensi WHERE pertemuan_ke ='$pertemuan' AND id_mengajar='$pelajaran' AND id_mahasiswa='$id_mahasiswa' "));
 
 				if ($cekAbsesnHariIni > 0) {
 					echo "
-						<script type='text/javascript'>
-						setTimeout(function () { 
+                <script type='text/javascript'>
+                setTimeout(function () { 
 
-						swal('Sorry!', 'Absen Hari ini sudah dilakukan', {
-						icon : 'error',
-						buttons: {        			
-						confirm: {
-						className : 'btn btn-danger'
-						}
-						},
-						});    
-						},10);  
-						window.setTimeout(function(){ 
-						window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
-						} ,3000);   
-						</script>";
+                swal('Sorry!', 'Absen Hari ini sudah dilakukan', {
+                icon : 'error',
+                buttons: {        			
+                confirm: {
+                className : 'btn btn-danger'
+                }
+                },
+                });    
+                },10);  
+                window.setTimeout(function(){ 
+                window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
+                } ,3000);   
+                </script>";
 
 				} else {
 
@@ -235,26 +236,94 @@ foreach ($kelasMengajar as $d)
 					if ($insert) {
 
 						echo "
-							<script type='text/javascript'>
-							setTimeout(function () { 
+                    <script type='text/javascript'>
+                    setTimeout(function () { 
 
-							swal('Berhasil', 'Absen hari ini telah tersimpan!', {
-							icon : 'success',
-							buttons: {        			
-							confirm: {
-							className : 'btn btn-success'
-							}
-							},
-							});    
-							},10);  
-							window.setTimeout(function(){ 
-							window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
-							} ,3000);   
-							</script>";
+                    swal('Berhasil', 'Absen hari ini telah tersimpan!', {
+                    icon : 'success',
+                    buttons: {        			
+                    confirm: {
+                    className : 'btn btn-success'
+                    }
+                    },
+                    });    
+                    },10);  
+                    window.setTimeout(function(){ 
+                    window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
+                    } ,3000);   
+                    </script>";
 					}
 				}
 			}
 		}
+
 		?>
 	</div>
 </div>
+
+<script>
+	// Mendapatkan elemen HTML yang diperlukan
+	const selectContainer = document.getElementById("select-container");
+
+	// Daftar pilihan kode aslab yang dapat ditampilkan
+	const kodeAslabOptions = [
+		"ER",
+		"DF",
+		"RN",
+		"RZ",
+		"ZD",
+		"TA",
+		"FI",
+		"AD",
+		"NK",
+		"DY",
+		"SG",
+		"BY",
+		"FO",
+		"FZ",
+		"SP",
+		"RF",
+		"MC",
+		"SK",
+		"HF",
+		"RG",
+	];
+
+	// Event listener untuk menambahkan input select baru saat kode aslab pertama dipilih
+	document.addEventListener("change", function (event) {
+		// Cek apakah perubahan terjadi pada input select yang memiliki class "form-control"
+		if (
+			event.target.tagName === "SELECT" &&
+			event.target.classList.contains("form-control")
+		) {
+			tambahInputSelect();
+		}
+	});
+
+	// Fungsi untuk menambahkan input select baru
+	function tambahInputSelect() {
+		const div = document.createElement("div");
+		div.classList.add("select-group"); // Tambahkan class "select-group" ke div baru
+		const select = document.createElement("select");
+		select.classList.add("form-control"); // Tambahkan class "form-control" ke input select
+		select.name = "kode_aslab[]";
+
+		// Tambahkan opsi pertama dengan nilai kosong (kosong yang terpilih)
+		const emptyOption = document.createElement("option");
+		emptyOption.value = "";
+		emptyOption.textContent = "Pilih kode aslab";
+		emptyOption.selected = true; // Buat yang pertama terpilih
+		emptyOption.disabled = true; // Jadikan yang pertama disabled
+		select.appendChild(emptyOption);
+
+		kodeAslabOptions.forEach((option) => {
+			const optionElement = document.createElement("option");
+			optionElement.value = option;
+			optionElement.textContent = option;
+			select.appendChild(optionElement);
+		});
+
+		div.appendChild(select);
+		selectContainer.appendChild(div);
+	}
+</script>

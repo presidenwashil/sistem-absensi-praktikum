@@ -1,6 +1,6 @@
 <div class="page-inner">
     <div class="page-header">
-        <h4 class="page-title">Aslab</h4>
+        <h4 class="page-title">Berita Acara Praktikum</h4>
         <ul class="breadcrumbs">
             <li class="nav-home">
                 <a href="#">
@@ -11,13 +11,13 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Data Aslab</a>
+                <a href="#">Data Berita Acara Praktikum</a>
             </li>
             <li class="separator">
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Tambah Aslab</a>
+                <a href="#">Tambah Berita Acara Praktikum</a>
             </li>
         </ul>
     </div>
@@ -26,7 +26,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h3 class="h4">Form Entry Aslab</h3>
+                    <h3 class="h4">Form Entry Berita Acara Praktikum</h3>
                 </div>
                 <div class="card-body">
                     <form action="?page=aslab&act=proses" method="post" enctype="multipart/form-data">
@@ -61,12 +61,31 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Jumlah Peserta Yang Hadir</label>
+                            <label>Jumlah Peserta Yang Terdaftar</label>
                             <input name="jml_hadir" type="text" class="form-control" placeholder="20">
                         </div>
 
                         <div class="form-group">
-                            <label>Jumlah Peserta Yang Tidak Hadir</label>
+                            <label>Hari/Tanggal</label>
+                            <input name="tanggal" type="date" class="form-control" placeholder="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Waktu Mulai</label>
+                            <input name="tanggal" type="time" class="form-control" placeholder="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Waktu Selesai</label>
+                            <input name="tanggal" type="time" class="form-control" placeholder="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ruangan</label>
+                            <input name="tanggal" type="text" class="form-control" placeholder="Lab Pemrograman">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Peserta Yang Hadir</label>
                             <input name="jml_absen" type="text" class="form-control" placeholder="5">
                         </div>
 
@@ -76,25 +95,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Nama Aslab</label>
+                            <label>Materi Yang Di Sampaikan</label>
                             <input name="nama" type="text" class="form-control" placeholder="Nama dan Gelar">
                         </div>
 
                         <div class="form-group">
-                            <label>Email</label>
-                            <input name="email" type="text" class="form-control" placeholder="Email">
+                            <label>Catatan</label>
+                            <input name="nama" type="text" class="form-control" placeholder="Nama dan Gelar">
                         </div>
 
                         <div class="form-group">
-                            <p>
-                                <img src="../assets/img/user/<?= $data['foto']; ?>"
-                                    class="img-fluid rounded-circle kotak" style="height: 65px; width: 65px;">
-                            </p>
-                            <label>Foto</label>
-                            <input type="file" name="foto">
+                            <label>Nama Aslab</label>
+                            <input name="nama" type="text" class="form-control" placeholder="Nama dan Gelar">
                         </div>
-
-
 
                         <div class="form-group">
                             <button name="saveAslab" type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
@@ -110,3 +123,35 @@
         </div>
     </div>
 </div>
+
+<?php
+// Mengambil data dari formulir
+$jenjang = $_POST['jenjang'];
+$jurusan = $_POST['jurusan'];
+$matkul = $_POST['matkul'];
+$sks = $_POST['sks'];
+$kelas = $_POST['kelas'];
+$kelompok = $_POST['kelompok'];
+$jml_hadir = $_POST['jml_hadir'];
+$tanggal = $_POST['tanggal'];
+$waktu_mulai = $_POST['waktu_mulai'];
+$waktu_selesai = $_POST['waktu_selesai'];
+$ruangan = $_POST['ruangan'];
+$jml_absen = $_POST['jml_absen'];
+$materi = $_POST['materi'];
+$catatan = $_POST['catatan'];
+$nama_aslab = $_POST['nama_aslab'];
+
+// Query SQL untuk memasukkan data ke dalam tabel tb_berita_acara
+$insert = mysqli_query($con, "INSERT INTO tb_berita_acara (jenjang, jurusan, id_matakuliah, sks, kelas, kelompok, id_presensi, wkt_masuk, wkt_keluar, id_laboratorium, materi, catatan, id_dosen)
+VALUES ('$jenjang', '$jurusan', '$matkul', '$sks', '$kelas', '$kelompok', , '$waktu_mulai', '$waktu_selesai', '$ruangan', '$materi', '$catatan', NULL)");
+
+if ($conn->query($sql) === TRUE) {
+    echo "Data Berita Acara Praktikum berhasil ditambahkan.";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Menutup koneksi ke database
+$conn->close();
+?>
