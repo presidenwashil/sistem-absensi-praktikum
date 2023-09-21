@@ -234,7 +234,11 @@ $mengajar = mysqli_query($con, "SELECT tb_mengajar.*, tb_mkelas.nama_kelas, tb_m
 											<span class="sub-item">Kelompok</span>
 										</a>
 									</li>
-
+									<li>
+										<a href="?page=master&act=jenjang">
+											<span class="sub-item">Jenjang</span>
+										</a>
+									</li>
 									<li>
 										<a href="?page=master&act=lab">
 											<span class="sub-item">Ruangan</span>
@@ -466,7 +470,12 @@ $mengajar = mysqli_query($con, "SELECT tb_mengajar.*, tb_mkelas.nama_kelas, tb_m
 						include 'modul/master/lab/data_kelas.php';
 					} elseif ($act == 'dellab') {
 						include 'modul/master/lab/del.php';
-						// semster
+						//jenjang
+					} elseif ($act == 'jenjang') {
+						include 'modul/master/jenjang/data_jenjang.php';
+					} elseif ($act == 'deljenjang') {
+						include 'modul/master/jenjang/del.php';
+						//semester
 					} elseif ($act == 'semester') {
 						include 'modul/master/semester/data.php';
 					} elseif ($act == 'delsemester') {

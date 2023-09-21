@@ -82,25 +82,30 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
     }
 </style>
 <table width="100%">
+    <div style="text-align: center;">
+        <img src="../../../assets/img/stmik.png" width="200" height="200" margin="0"
+            style=" display: inline-block; vertical-align: middle;">
+        <div style="display: inline-block; vertical-align: middle;">
+            <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 35; margin: 0;">SEKOLAH TINGGI MANAJEMEN
+                INFORMATIKA
+                dan KOMPUTER</h2>
+            <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 60; margin: 0;">
+                WIDYA CIPTA DHARMA
+            </h1>
+            <p style="font-size: 26; margin: 1px;">Status Terakreditasi Badan Akredirasi Nasional Perguruan Tinggi</p>
+            <p style="font-size: 26; margin: 1px;"> Jl. M. Yamin No. 25 Samarinda - Kalimantan Timur 75123 Telp. 0541
+                -
+                736071 Fax. 203492,734468<br>
+                E-mail : wicida@wicida.ac.id
+            </p>
+        </div>
+    </div>
+    <hr style="border-top: 2px solid #333; margin-top: 10px; margin-bottom: 1px;">
+    <hr style="border-top: 2px solid #333; margin-top: 1px; margin-bottom: 10px;">
+    <div style="text-align: center; font-size: 12px;">
+
+    </div>
     <tr>
-        <td>
-            <img src="../../../assets/img/stmik.png" width="130">
-        </td>
-        <td>
-            <center>
-
-                <h1>
-                    ABSENSI PRAKTIKUM MAHASISWA <br>
-                    <small> STMIK Widya Cipta Dharma</small>
-                </h1>
-                <hr>
-                <em>
-                    Jl. M. Yamin, Gn. Kelua, Kec. Samarinda Ulu<br>Samarinda, Kalimantan Timur 75123<br>
-                    <b>Email : wicida@wicida.ac.id Telp.0541 736071</b>
-                </em>
-
-            </center>
-        </td>
         <td>
 
             <table width="100%">
