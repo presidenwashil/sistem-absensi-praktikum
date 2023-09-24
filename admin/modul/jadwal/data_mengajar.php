@@ -42,6 +42,9 @@
                   <th>Lab</th>
                   <th>Kelompok</th>
                   <th>TP/Semester</th>
+                  <th>Program Studi</th>
+                  <th>Jenjang</th>
+                  <th>Kelas</th>
                   <th>Hari</th>
                   <th>Waktu</th>
                   <th>Sesi</th>
@@ -56,8 +59,11 @@
                             INNER JOIN tb_matakuliah ON tb_mengajar.id_matakuliah=tb_matakuliah.id_matakuliah
                             INNER JOIN tb_laboratorium ON tb_mengajar.id_lab=tb_laboratorium.id_lab
                             INNER JOIN tb_mkelas ON tb_mengajar.id_mkelas=tb_mkelas.id_mkelas
+                            INNER JOIN tb_kelas ON tb_mengajar.id_kelas=tb_kelas.id_kelas
                             INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
                             INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran 
+                            INNER JOIN tb_program_studi ON tb_mengajar.id_program_studi=tb_program_studi.id_program_studi
+                            INNER JOIN tb_jenjang ON tb_mengajar.id_jenjang=tb_jenjang.id_jenjang
                                ");
                 foreach ($matakuliah as $d) {
                   ?>
@@ -81,6 +87,15 @@
                     <td>
                       <?= $d['tahun_ajaran'] ?>/
                       <?= $d['semester'] ?>
+                    </td>
+                    <td>
+                      <?= $d['nama_program_studi'] ?>
+                    </td>
+                    <td>
+                      <?= $d['nama_jenjang'] ?>
+                    </td>
+                    <td>
+                      <?= $d['kode_kelas'] ?>
                     </td>
                     <td>
                       <?= $d['hari'] ?>

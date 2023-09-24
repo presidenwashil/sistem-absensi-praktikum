@@ -39,8 +39,8 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="kode">Kode Pelajaran</label>
-									<input name="kode" type="text" class="form-control" id="kode"
-										value="MPL-<?= time(); ?>">
+									<input name="kode_pelajaran" type="text" class="form-control" id="kode"
+										value="MPL-<?= time(); ?>" required>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -62,10 +62,10 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 						</div>
 
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<div class="form-group">
 									<label>Asisten Lab</label>
-									<select name="aslab" class="form-control">
+									<select name="aslab" class="form-control" required>
 										<option value="">- Pilih -</option>
 										<?php
 										$aslab = mysqli_query($con, "SELECT * FROM tb_aslab ORDER BY id_aslab ASC");
@@ -79,15 +79,28 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 								<div class="form-group">
 									<label for="hari">Hari</label>
 									<input class="form-control" type="text" name="hari" id="hari"
-										placeholder="Masukkan hari">
+										placeholder="Masukkan hari" required>
 								</div>
-							</div>
 
-							<div class="col-md-6">
-								<!-- Praktikum -->
+								<!-- Kelompok -->
 								<div class="form-group">
-									<label>Praktikum</label>
-									<select name="matakuliah" class="form-control">
+									<label>Kelompok</label>
+									<select name="kelompok" class="form-control" required>
+										<option value="">- Pilih -</option>
+										<?php
+										$kelompok = mysqli_query($con, "SELECT * FROM tb_mkelas ORDER BY id_mkelas ASC");
+										foreach ($kelompok as $kk) {
+											echo "<option value='$kk[id_mkelas]'>$kk[nama_kelas]</option>";
+										}
+										?>
+
+									</select>
+								</div>
+
+								<!-- Matakuliah -->
+								<div class="form-group">
+									<label>Matakuliah</label>
+									<select name="matakuliah" class="form-control" required>
 										<option value="">- Pilih -</option>
 										<?php
 										$matakuliah = mysqli_query($con, "SELECT * FROM tb_matakuliah ORDER BY id_matakuliah ASC");
@@ -98,10 +111,11 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 
 									</select>
 								</div>
+
 								<!-- Laboratorium -->
 								<div class="form-group">
 									<label>Laboratorium</label>
-									<select name="lab" class="form-control">
+									<select name="lab" class="form-control" required>
 										<option value="">- Pilih -</option>
 										<?php
 										$matakuliah = mysqli_query($con, "SELECT * FROM tb_laboratorium ORDER BY id_lab ASC");
@@ -112,53 +126,57 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 
 									</select>
 								</div>
+
+								<!-- Program Studi -->
+								<div class="form-group">
+									<label>Program Studi</label>
+									<select name="program_studi" class="form-control">
+										<option value="">- Pilih -</option>
+										<?php
+										$program_studi = mysqli_query($con, "SELECT * FROM tb_program_studi ORDER BY id_program_studi ASC");
+										foreach ($program_studi as $ps) {
+											echo "<option value='$ps[id_program_studi]'> $ps[nama_program_studi]</option>";
+										}
+										?>
+									</select>
+								</div>
+
+								<!-- Jenjang -->
+								<div class="form-group">
+									<label>Jenjang</label>
+									<select name="jenjang" class="form-control">
+										<option value="">- Pilih -</option>
+										<?php
+										$jenjang = mysqli_query($con, "SELECT * FROM tb_jenjang ORDER BY id_jenjang ASC");
+										foreach ($jenjang as $j) {
+											echo "<option value='$j[id_jenjang]'> $j[nama_jenjang]</option>";
+											?>
+										<?php } ?>
+									</select>
+								</div>
+
 								<!-- Kelas -->
-								<!-- <div class="form-group">
-											<label>Kelas</label>
-											<select name="mkelas" class="form-control">
-												<option value="">- Pilih -</option>
-												<?php
-												$kelas = mysqli_query($con, "SELECT * FROM tb_mkelas ORDER BY id_mkelas ASC");
-												foreach ($kelas as $g) {
-													echo "<option value='$g[id_mkelas]'>$g[nama_kelas]</option>";
-												}
-												?>
-												
-											</select>
-										</div> -->
-
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="row">
-								<div class="col-md-6">
+								<div class="form-group">
 									<label>Kelas</label>
 									<select name="kelas" class="form-control">
 										<option value="">- Pilih -</option>
 										<?php
-										$kelas = mysqli_query($con, "SELECT * FROM tb_mkelas ORDER BY id_mkelas ASC");
-										foreach ($kelas as $g) {
-											echo "<option value='$g[id_mkelas]'>$g[nama_kelas]</option>";
-										}
-										?>
-
+										$kelas = mysqli_query($con, "SELECT * FROM tb_kelas ORDER BY id_kelas ASC");
+										foreach ($kelas as $ks) {
+											echo "<option value='$ks[id_kelas]'> $ks[nama_kelas]</option>";
+											?>
+										<?php } ?>
 									</select>
-
-
 								</div>
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-md-6">
+								<!-- Waktu -->
 								<div class="form-group">
 									<label for="waktu">Waktu</label>
-									<input name="waktu" type="text" class="form-control" id="waktu"
+									<input name="jam_mengajar" type="text" class="form-control" id="waktu"
 										placeholder="00.00 - 00.00">
 								</div>
-							</div>
-							<div class="col-md-6">
+
+								<!-- Sesi -->
 								<div class="form-group">
 									<label for="jamke">Jam Ke</label>
 									<input name="jamke" type="text" class="form-control" id="jamke"
@@ -166,6 +184,7 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
@@ -180,25 +199,32 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 						</div>
 					</form>
 					<?php
-
 					if (isset($_POST['save'])) {
-
-
-						$kode = $_POST['kode'];
+						$kode = $_POST['kode_pelajaran'];
 						$ta = $_POST['ta'];
 						$semester = $_POST['semester'];
 						$aslab = $_POST['aslab'];
 						$matakuliah = $_POST['matakuliah'];
 						$hari = $_POST['hari'];
 						$lab = $_POST['lab'];
+						$kelompok = $_POST['kelompok'];
 						$kelas = $_POST['kelas'];
-						$waktu = $_POST['waktu'];
+						$program_studi = $_POST['program_studi'];
+						$jenjang = $_POST['jenjang'];
+						$waktu = $_POST['jam_mengajar'];
 						$jamke = $_POST['jamke'];
 
-						$insert = mysqli_query($con, "INSERT INTO tb_mengajar VALUES (NULL,'$kode','$hari','$waktu','$jamke','$aslab','$matakuliah','$lab','$kelas','$semester','$ta' ) ");
+						$queryCheckKelompok = "SELECT * FROM tb_mkelas WHERE id_mkelas = '$kelompok'";
+						$resultCheckKelompok = mysqli_query($con, $queryCheckKelompok);
 
-						if ($insert) {
-							echo "
+						if (!$resultCheckKelompok || mysqli_num_rows($resultCheckKelompok) != 1) {
+							// Handle the case where $kelompok is invalid
+							echo "Invalid kelompok value or not found in tb_mkelas.";
+						} else {
+							// $kelompok is valid, proceed with the INSERT query
+							$insert = mysqli_query($con, "INSERT INTO tb_mengajar (id_mengajar, kode_pelajaran, hari, jam_mengajar, jamke, id_aslab, id_matakuliah, id_lab, id_mkelas, id_kelas, id_semester, id_thajaran, id_program_studi, id_jenjang) VALUES (NULL,'$kode','$hari','$waktu','$jamke','$aslab','$matakuliah','$lab','$kelompok','$kelas','$semester','$ta','$program_studi','$jenjang')");
+							if ($insert) {
+								echo "
 								<script type='text/javascript'>
 								setTimeout(function () { 
 
@@ -215,16 +241,14 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 								window.location.replace('?page=jadwal');
 								} ,3000);   
 								</script>";
+							} else {
+								// Handle the case where the INSERT query fails
+								echo "Error: " . mysqli_error($con);
+							}
 						}
 					}
-
-
 					?>
-
-
-
 				</div>
-
 			</div>
 		</div>
 	</div>
