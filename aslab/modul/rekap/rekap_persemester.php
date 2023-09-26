@@ -43,9 +43,11 @@ $kelasMengajar = mysqli_query($con, "SELECT * FROM tb_mengajar
 
 INNER JOIN tb_matakuliah ON tb_mengajar.id_matakuliah=tb_matakuliah.id_matakuliah
 INNER JOIN tb_mkelas ON tb_mengajar.id_mkelas=tb_mkelas.id_mkelas
-
+INNER JOIN tb_kelompok ON tb_mengajar.id_kelompok=tb_kelompok.id_kelompok
 INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
 INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
+INNER JOIN tb_program_studi ON tb_mengajar.id_program_studi=tb_program_studi.id_program_studi
+INNER JOIN tb_jenjang ON tb_mengajar.id_jenjang=tb_jenjang.id_jenjang
 WHERE tb_mengajar.id_mengajar='$_GET[pelajaran]' AND tb_mengajar.id_mkelas='$_GET[kelas]'  AND tb_thajaran.status=1 AND tb_semester.status=1  ");
 
 foreach ($kelasMengajar as $d)
@@ -161,9 +163,32 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
                         <?= $walas['nama_dosen'] ?>
                     </td>
                 </tr>
+                <tr>
+                    <td>Jenjang </td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_jenjang'] ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Program Studi </td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_program_studi'] ?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kelas</td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_kelompok'] ?>
+                    </td>
+                </tr>
             </table>
-        </td>
-    </tr>
+</table>
+</td>
+</tr>
 </table>
 
 <hr style="height: 3px;border: 1px solid;">

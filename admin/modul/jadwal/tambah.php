@@ -161,9 +161,9 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 									<select name="kelas" class="form-control">
 										<option value="">- Pilih -</option>
 										<?php
-										$kelas = mysqli_query($con, "SELECT * FROM tb_kelas ORDER BY id_kelas ASC");
+										$kelas = mysqli_query($con, "SELECT * FROM tb_kelompok ORDER BY id_kelompok ASC");
 										foreach ($kelas as $ks) {
-											echo "<option value='$ks[id_kelas]'> $ks[nama_kelas]</option>";
+											echo "<option value='$ks[id_kelompok]'> $ks[nama_kelompok]</option>";
 											?>
 										<?php } ?>
 									</select>
@@ -222,7 +222,7 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 							echo "Invalid kelompok value or not found in tb_mkelas.";
 						} else {
 							// $kelompok is valid, proceed with the INSERT query
-							$insert = mysqli_query($con, "INSERT INTO tb_mengajar (id_mengajar, kode_pelajaran, hari, jam_mengajar, jamke, id_aslab, id_matakuliah, id_lab, id_mkelas, id_kelas, id_semester, id_thajaran, id_program_studi, id_jenjang) VALUES (NULL,'$kode','$hari','$waktu','$jamke','$aslab','$matakuliah','$lab','$kelompok','$kelas','$semester','$ta','$program_studi','$jenjang')");
+							$insert = mysqli_query($con, "INSERT INTO tb_mengajar (id_mengajar, kode_pelajaran, hari, jam_mengajar, jamke, id_aslab, id_matakuliah, id_lab, id_mkelas, id_kelompok, id_semester, id_thajaran, id_program_studi, id_jenjang) VALUES (NULL,'$kode','$hari','$waktu','$jamke','$aslab','$matakuliah','$lab','$kelompok','$kelas','$semester','$ta','$program_studi','$jenjang')");
 							if ($insert) {
 								echo "
 								<script type='text/javascript'>

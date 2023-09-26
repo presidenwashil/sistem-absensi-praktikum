@@ -26,17 +26,35 @@
 		<?php
 		foreach ($mengajar as $jd) {
 			?>
-			<div class="col-md-5 col-xs-12">
+			<div class="col-md-6 col-xs-12">
 
 				<div class="alert alert-info alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
 					<strong>
 						<h3>
-							<?= $jd['matakuliah']; ?>
+							<?= $jd['nama_kelas']; ?>
 						</h3>
 					</strong>
 					<hr>
 					<ul>
+						<li>
+							Jenjang/Jurusan :
+							<?= $jd['kode_jenjang']; ?> /
+							<?= $jd['nama_program_studi']; ?>
+						</li>
+						<li>
+							Nama Matakuliah Praktikum :
+							<?= $jd['matakuliah']; ?>
+						</li>
+						<li>
+							SKS :
+							<?= $jd['sks']; ?>
+						</li>
+						<li>
+							Kelas :
+							<?= $jd['kode_program_studi'] ?> -
+							<?= $jd['kode_kelompok']; ?>
+						</li>
 						<li>
 							Hari :
 							<?= $jd['hari']; ?>
@@ -50,12 +68,8 @@
 							<?= $jd['jam_mengajar']; ?>
 						</li>
 						<li>
-							Lab :
+							Ruangan :
 							<?= $jd['nama_lab']; ?>
-						</li>
-						<li>
-							Kelas :
-							<?= $jd['nama_kelas']; ?>
 						</li>
 						<li>
 							Semester :

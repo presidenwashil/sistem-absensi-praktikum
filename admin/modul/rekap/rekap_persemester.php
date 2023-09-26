@@ -43,7 +43,7 @@ $kelasMengajar = mysqli_query($con, "SELECT * FROM tb_mengajar
 
 INNER JOIN tb_matakuliah ON tb_mengajar.id_matakuliah=tb_matakuliah.id_matakuliah
 INNER JOIN tb_mkelas ON tb_mengajar.id_mkelas=tb_mkelas.id_mkelas
-
+INNER JOIN tb_kelompok ON tb_mengajar.id_kelompok=tb_kelompok.id_kelompok
 INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
 INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
 INNER JOIN tb_program_studi ON tb_mengajar.id_program_studi=tb_program_studi.id_program_studi
@@ -62,6 +62,7 @@ INNER JOIN tb_mahasiswa ON _logabsensi.id_mahasiswa=tb_mahasiswa.id_mahasiswa
 INNER JOIN tb_mengajar ON _logabsensi.id_mengajar=tb_mengajar.id_mengajar
 INNER JOIN tb_aslab ON tb_mengajar.id_aslab=tb_aslab.id_aslab
 INNER JOIN tb_mkelas ON tb_mengajar.id_mkelas=tb_mkelas.id_mkelas
+INNER JOIN tb_kelompok ON tb_mengajar.id_kelompok=tb_kelompok.id_kelompok
 INNER JOIN tb_laboratorium ON tb_mengajar.id_lab=tb_laboratorium.id_lab
 INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
 INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
@@ -143,11 +144,7 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
-                <!-- <tr>
-    <td>Asisten Laboratorium </td>
-    <td>:</td>
-    <td><?= $d['nama_aslab'] ?></td>
-  </tr> -->
+
                 <tr>
                     <td>Praktikum </td>
                     <td>:</td>
@@ -160,6 +157,28 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
                     <td>:</td>
                     <td>
                         <?= $walas['nama_dosen'] ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jenjang </td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_jenjang'] ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Program Studi </td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_program_studi'] ?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kelas</td>
+                    <td>:</td>
+                    <td>
+                        <?= $d['nama_kelompok'] ?>
                     </td>
                 </tr>
             </table>
@@ -343,6 +362,9 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
         </tr>
 
     <?php } ?>
+
+    <tr></tr>
+
     <tr>
         <!-- style="height: 150px;" -->
         <td colspan="3" align="center">Tanggal Pertemuan</td>

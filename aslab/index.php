@@ -27,6 +27,9 @@ INNER JOIN tb_mkelas ON tb_mengajar.id_mkelas=tb_mkelas.id_mkelas
 INNER JOIN tb_laboratorium ON tb_mengajar.id_lab=tb_laboratorium.id_lab
 INNER JOIN tb_semester ON tb_mengajar.id_semester=tb_semester.id_semester
 INNER JOIN tb_thajaran ON tb_mengajar.id_thajaran=tb_thajaran.id_thajaran
+INNER JOIN tb_kelompok ON tb_mengajar.id_kelompok=tb_kelompok.id_kelompok
+INNER JOIN tb_program_studi ON tb_mengajar.id_program_studi=tb_program_studi.id_program_studi
+INNER JOIN tb_jenjang ON tb_mengajar.id_jenjang=tb_jenjang.id_jenjang
 WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_semester.status=1 ");
 ?>
 

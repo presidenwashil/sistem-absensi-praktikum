@@ -82,7 +82,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-10">
                                                                     <div class="form-group">
-                                                                        <label>Nama Kelas</label>
+                                                                        <label>Nama Kelompok</label>
                                                                         <input name="id" type="hidden"
                                                                             value="<?= $k['id_mkelas'] ?>">
                                                                         <input name="kelas" type="text"
@@ -137,20 +137,20 @@
                 <div role="document" class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 id="exampleModalLabel" class="modal-title">Tambah Kelas</h4>
+                            <h4 id="exampleModalLabel" class="modal-title">Tambah Kelompok</h4>
                             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
                                     aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" class="form-horizontal">
                                 <div class="form-group">
-                                    <label>Kode Kelas</label>
+                                    <label>Kode Kelompok</label>
                                     <input name="kode" type="text" value="KL-<?= time(); ?>" class="form-control"
                                         readonly>
                                     <div class="form-group">
-                                        <label>Nama Kelas</label>
-                                        <input name="kelas" type="text" placeholder="Nama kelas .."
-                                            class="form-control">
+                                        <label>Nama Kelompok</label>
+                                        <input name="kelas" type="text"
+                                            placeholder="Alpro 1 Kelompok 1 (SI / I / 2 / PA)" class="form-control">
                                     </div>
 
                                     <div class="form-group">

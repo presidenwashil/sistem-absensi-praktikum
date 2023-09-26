@@ -92,7 +92,7 @@ foreach ($kelasMengajar as $d)
 									
 										}
 										?>
-										<!-- (<code><?= $s['nim'] ?></code>) -->
+										(<code><?= $s['nim'] ?></code>)
 										<input type="hidden" name="id_mahasiswa<?= $i; ?>"
 											value="<?= $s['id_mahasiswa'] ?>">
 										<input type="hidden" name="pelajaran" value="<?= $_GET['pelajaran'] ?>">
