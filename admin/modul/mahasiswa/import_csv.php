@@ -15,36 +15,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Baca file CSV dan tambahkan data ke tabel tb_mahasiswa
             $handle = fopen($file_tmp, "r");
             if ($handle !== FALSE) {
+                $successCount = 0;
+                $duplicateCount = 0;
+
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                    // Sesuaikan kolom dalam file CSV dengan struktur tabel
+                    if (count($data) != 4) {
+                        echo "<script>alert('Format data tidak valid. Harap periksa file CSV Anda.'); window.location.replace('?page=mahasiswa')</script>";
+                        exit();
+                    }
+
                     $nim = mysqli_real_escape_string($con, $data[0]);
                     $nama_mahasiswa = mysqli_real_escape_string($con, $data[1]);
-                    $raw_password = mysqli_real_escape_string($con, $data[2]); // Password dalam teks biasa
+                    $raw_password = mysqli_real_escape_string($con, $data[2]);
                     $foto = mysqli_real_escape_string($con, $data[3]);
 
-                    // Enkripsi password menggunakan SHA-1
                     $password = sha1($raw_password);
-
                     $status = 1;
 
-                    // Tambahkan data ke tabel tb_mahasiswa
-                    $query = "INSERT INTO tb_mahasiswa (nim, nama_mahasiswa, password, foto, status) VALUES ('$nim', '$nama_mahasiswa', '$password', '$foto', '$status')";
-                    mysqli_query($con, $query);
+                    // Cek apakah data dengan nim yang sama sudah ada dalam tabel
+                    $query_check = "SELECT COUNT(*) FROM tb_mahasiswa WHERE nim = '$nim'";
+                    $result_check = mysqli_query($con, $query_check);
+                    $row_check = mysqli_fetch_array($result_check);
+
+                    if ($row_check[0] == 0) {
+                        // Data dengan nim yang sama tidak ada, tambahkan data ke tabel
+                        $query_insert = "INSERT INTO tb_mahasiswa (nim, nama_mahasiswa, password, foto, status) VALUES ('$nim', '$nama_mahasiswa', '$password', '$foto', '$status')";
+                        mysqli_query($con, $query_insert);
+                        $successCount++;
+                    } else {
+                        // Data dengan nim yang sama sudah ada, catat sebagai duplikat
+                        $duplicateCount++;
+                    }
                 }
+
                 fclose($handle);
 
-                echo "<script>alert('Impor berhasil.'); window.location.replace('?page=mahasiswa')</script>";
+                if ($successCount > 0) {
+                    echo "<script>alert('Impor berhasil. $successCount data berhasil diimpor. $duplicateCount data sudah ada dan tidak diimpor.'); window.location.replace('?page=mahasiswa')</script>";
+                } else {
+                    echo "<script>alert('Impor gagal. Semua data sudah ada dalam tabel.'); window.location.replace('?page=mahasiswa')</script>";
+                }
+
                 // Redirect kembali ke halaman data.php
                 exit();
             } else {
                 echo "<script>alert('Impor gagal.'); window.location.replace('?page=mahasiswa')</script>";
             }
         } else {
-            echo "<script>alert('Format file tidak valid. harap unggah file CSV.'); window.location.replace('?page=mahasiswa')</script>";
+            echo "<script>alert('Format file tidak valid. Harap unggah file CSV.'); window.location.replace('?page=mahasiswa')</script>";
         }
     }
 }
 ?>
+
 
 <!-- Tambahkan formulir untuk mengunggah file CSV -->
 <div class="page-inner">

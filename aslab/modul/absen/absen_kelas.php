@@ -73,9 +73,9 @@ foreach ($kelasMengajar as $d)
 							?>
 
 							<div class="item-list">
-								<div class="avatar">
+								<!-- <div class="avatar">
 									<img src="../assets/img/user/<?= $s['foto'] ?>" class="avatar-img rounded-circle">
-								</div>
+								</div> -->
 
 								<div class="info-user">
 									<div class="username">
@@ -119,13 +119,13 @@ foreach ($kelasMengajar as $d)
 												<span class="form-check-sign">S</span>
 											</label>
 										</div>
-										<div class="form-check form-check-inline">
+										<!-- <div class="form-check form-check-inline">
 											<label class="form-check-label">
 												<input name="ket-<?= $i; ?>" class="form-check-input" type="radio"
 													value="T">
 												<span class="form-check-sign">T</span>
 											</label>
-										</div>
+										</div> -->
 										<div class="form-check form-check-inline">
 											<label class="form-check-label">
 												<input name="ket-<?= $i; ?>" class="form-check-input" type="radio"
@@ -184,8 +184,8 @@ foreach ($kelasMengajar as $d)
 						</button>
 						<a href="?page=jadwal" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i>
 							Kembali</a>
-						<!-- <a href="?page=absen&act=update&pelajaran=<?= $_GET['pelajaran']; ?>" class="btn btn-warning"><i
-								class="fas fa-edit"></i> Update Absesnsi</a> -->
+						<a href="?page=absen&act=update&pelajaran=<?= $_GET['pelajaran']; ?>" class="btn btn-warning"><i
+								class="fas fa-edit"></i> Update Absesnsi</a>
 						<!-- <a href="?page=jadwal" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i>
 							Kembali</a> -->
 					</center>
