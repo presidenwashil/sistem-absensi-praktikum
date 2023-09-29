@@ -40,24 +40,6 @@ foreach ($kelasMengajar as $d) {
 
     <div class="row">
         <div class="col-md-8 col-xs-12">
-            <!-- <?php
-            // Tampilkan jika ada yang izin hari ini
-            $today = date('Y-m-d'); // tanggal sekarang
-            $queryIzin = mysqli_query($con, "SELECT * FROM tb_mahasiswa 
-    INNER JOIN tb_mahasiswa_kelas ON tb_mahasiswa.id_mahasiswa=tb_mahasiswa_kelas.id_mahasiswa
-    WHERE tb_mahasiswa_kelas.id_mkelas=" . $d['id_mkelas']);
-
-            foreach ($queryIzin as $si) { ?>
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    </button>
-                    <strong class="text-warning">(
-                        <?= $si['nama_mahasiswa'] ?> )
-                    </strong> Mengajukan permintaan izin pada hari ini <b> <a
-                            href="?page=absen&act=surat_view&izin=<?= $si['id_izin']; ?>"> Lihat permintaan ?</a></b>
-                </div>
-            <?php } ?> -->
-
             <?php
             // Dapatkan pertemuan terakhir di tb izin
             $last_pertemuan = mysqli_query($con, "SELECT * FROM _logabsensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1");
@@ -99,6 +81,7 @@ foreach ($kelasMengajar as $d) {
 
                 if (mysqli_num_rows($query_absensi) > 0) {
                     ?>
+
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -110,12 +93,15 @@ foreach ($kelasMengajar as $d) {
                             </thead>
                             <tbody>
                                 <form method="post" action="">
+                                    <input type="date" name="tgl" class="form-control" value="<?= date('Y-m-d') ?>"
+                                        style="background-color: #212121;color: #FFEB3B;">
                                     <?php
                                     // Tampilkan data absensi dan formulir pengeditan sesuai dengan kebutuhan Anda
                                     foreach ($query_absensi as $absensi) {
                                         $mahasiswa_id = $absensi['id_mahasiswa'];
                                         $radio_name = "ket-$mahasiswa_id";
                                         ?>
+
                                         <tr>
                                             <td>
                                                 <?= $absensi['nim']; ?>
@@ -188,6 +174,7 @@ foreach ($kelasMengajar as $d) {
 
             if (isset($_POST['update'])) {
                 $selected_pertemuan = $_POST['selected_pertemuan'];
+                $today = $_POST['tgl'];
 
                 // Loop melalui semua mahasiswa yang diabsen pada pertemuan yang dipilih
                 $query_absensi = mysqli_query($con, "SELECT * FROM _logabsensi WHERE id_mengajar='$_GET[pelajaran]' AND pertemuan_ke='$selected_pertemuan'");
@@ -202,7 +189,7 @@ foreach ($kelasMengajar as $d) {
                     $ket = isset($_POST[$radio_name]) ? $_POST[$radio_name] : '';
 
                     // Melakukan pembaruan data absensi
-                    $update_absen = mysqli_query($con, "UPDATE _logabsensi SET ket='$ket' WHERE id_mengajar='$_GET[pelajaran]' AND id_mahasiswa='$mahasiswa_id' AND pertemuan_ke='$selected_pertemuan'");
+                    $update_absen = mysqli_query($con, "UPDATE _logabsensi SET tgl_absen='$today', ket='$ket' WHERE id_mengajar='$_GET[pelajaran]' AND id_mahasiswa='$mahasiswa_id' AND pertemuan_ke='$selected_pertemuan'");
 
                     // Cek apakah pembaruan berhasil untuk setiap mahasiswa
                     if (!$update_absen) {
@@ -223,8 +210,6 @@ foreach ($kelasMengajar as $d) {
                           </script>';
                 }
             }
-
-
 
             ?>
         </div>
