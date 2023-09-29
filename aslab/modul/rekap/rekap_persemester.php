@@ -430,7 +430,7 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
     </tr>
 
     <tr>
-        <td colspan="3" align="center">Jumlah Hadir</td>
+        <td colspan="3" align="center">Hadir</td>
         <?php
         $jumlahPertemuan = $tglTerakhir; // Jumlah pertemuan total
         
