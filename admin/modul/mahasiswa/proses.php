@@ -100,7 +100,7 @@ if (isset($_POST['saveMahasiswa'])) {
         $ganti = mysqli_query($con, "UPDATE tb_mahasiswa SET foto='$gambar' WHERE id_mahasiswa='$_POST[id]' ");
     }
 
-    $editSiswa = mysqli_query($con, "UPDATE tb_mahasiswa SET nama_mahasiswa='$_POST[nama]', id_mkelas='$_POST[kelas]' WHERE id_mahasiswa='$_POST[id]' ");
+    $editSiswa = mysqli_query($con, "UPDATE tb_mahasiswa SET nama_mahasiswa='$_POST[nama]' WHERE id_mahasiswa='$_POST[id]' ");
 
     if ($editSiswa) {
         echo "
@@ -122,5 +122,6 @@ if (isset($_POST['saveMahasiswa'])) {
     } else {
         echo "Terjadi kesalahan dalam mengubah data mahasiswa.";
     }
+
 }
 ?>
