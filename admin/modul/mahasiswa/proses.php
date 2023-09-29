@@ -1,34 +1,44 @@
 <?php
 if (isset($_POST['saveMahasiswa'])) {
     $pass = sha1($_POST['nim']);
-    $sumber = @$_FILES['foto']['tmp_name'];
-    $target = '../assets/img/user/';
-    $nama_gambar = @$_FILES['foto']['name'];
-    $pindah = move_uploaded_file($sumber, $target . $nama_gambar);
 
-    if ($pindah) {
-        $saveMahasiswa = mysqli_query($con, "INSERT INTO tb_mahasiswa (nim, nama_mahasiswa, password, foto, status) VALUES ('$_POST[nim]', '$_POST[nama_mahasiswa]', '$pass', '$nama_gambar', '1') ");
+    // Mengecek apakah file gambar diunggah
+    if (!empty($_FILES['foto']['name'])) {
+        $sumber = $_FILES['foto']['tmp_name'];
+        $target = '../assets/img/user/';
+        $nama_gambar = $_FILES['foto']['name'];
+        $pindah = move_uploaded_file($sumber, $target . $nama_gambar);
 
-        if ($saveMahasiswa) {
-            echo "
-            <script type='text/javascript'>
-            setTimeout(function () { 
-                swal('($_POST[nama_mahasiswa]) ', 'Berhasil disimpan', {
-                    icon : 'success',
-                    buttons: {        			
-                        confirm: {
-                            className : 'btn btn-success'
-                        }
-                    },
-                });    
-            },10);  
-            window.setTimeout(function(){ 
-                window.location.replace('?page=mahasiswa');
-            } ,3000);   
-            </script>";
-        } else {
-            echo "Terjadi kesalahan dalam menyimpan data mahasiswa.";
+        // Memastikan gambar berhasil dipindahkan
+        if (!$pindah) {
+            echo "Gagal mengunggah gambar.";
+            exit(); // Hentikan eksekusi script jika gagal mengunggah gambar
         }
+    } else {
+        $nama_gambar = ''; // Atau bisa juga menggunakan NULL
+    }
+
+    $saveMahasiswa = mysqli_query($con, "INSERT INTO tb_mahasiswa (nim, nama_mahasiswa, password, foto, status) VALUES ('$_POST[nim]', '$_POST[nama_mahasiswa]', '$pass', '$nama_gambar', '1') ");
+
+    if ($saveMahasiswa) {
+        echo "
+        <script type='text/javascript'>
+        setTimeout(function () { 
+            swal('($_POST[nama_mahasiswa]) ', 'Berhasil disimpan', {
+                icon : 'success',
+                buttons: {        			
+                    confirm: {
+                        className : 'btn btn-success'
+                    }
+                },
+            });    
+        },10);  
+        window.setTimeout(function(){ 
+            window.location.replace('?page=mahasiswa');
+        } ,3000);   
+        </script>";
+    } else {
+        echo "Terjadi kesalahan dalam menyimpan data mahasiswa.";
     }
 } elseif (isset($_POST['addKelasMahasiswa'])) {
     $idMahasiswa = $_POST['nama_mahasiswa'];
