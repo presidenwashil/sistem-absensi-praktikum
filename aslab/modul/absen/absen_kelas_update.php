@@ -39,7 +39,7 @@ foreach ($kelasMengajar as $d) {
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-10 col-xs-12">
             <?php
             // Dapatkan pertemuan terakhir di tb izin
             $last_pertemuan = mysqli_query($con, "SELECT * FROM _logabsensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1");
@@ -73,6 +73,7 @@ foreach ($kelasMengajar as $d) {
             <?php
             if (isset($_POST['submit_pertemuan'])) {
                 $selected_pertemuan = $_POST['selected_pertemuan'];
+
 
                 // Query SQL untuk mengambil data absensi berdasarkan pertemuan yang dipilih
                 $query_absensi = mysqli_query($con, "SELECT a.*, m.nama_mahasiswa, m.nim FROM _logabsensi a
@@ -153,6 +154,18 @@ foreach ($kelasMengajar as $d) {
                                             </td>
                                         </tr>
                                     <?php } ?>
+
+                                    <div class="mt-3">
+                                        <input type="text" class="form-control" name="kode_aslab"
+                                            placeholder="Isikan kode aslab" value="<?= $d['kode_aslab'] ?>" required>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <input type="text" class="form-control" name="materi"
+                                            placeholder="Isikan materi praktikum hari ini" value="<?= $d['materi'] ?>" required>
+                                    </div>
+
+
                                     <tr>
                                         <td colspan="2">
                                             <button type="submit" name="update" class="btn btn-success">
@@ -174,6 +187,8 @@ foreach ($kelasMengajar as $d) {
 
             if (isset($_POST['update'])) {
                 $selected_pertemuan = $_POST['selected_pertemuan'];
+                $materi = $_POST['materi'];
+                $kode_aslab = $_POST['kode_aslab'];
                 $today = $_POST['tgl'];
 
                 // Loop melalui semua mahasiswa yang diabsen pada pertemuan yang dipilih
@@ -189,7 +204,7 @@ foreach ($kelasMengajar as $d) {
                     $ket = isset($_POST[$radio_name]) ? $_POST[$radio_name] : '';
 
                     // Melakukan pembaruan data absensi
-                    $update_absen = mysqli_query($con, "UPDATE _logabsensi SET tgl_absen='$today', ket='$ket' WHERE id_mengajar='$_GET[pelajaran]' AND id_mahasiswa='$mahasiswa_id' AND pertemuan_ke='$selected_pertemuan'");
+                    $update_absen = mysqli_query($con, "UPDATE _logabsensi SET materi='$materi', kode_aslab='$kode_aslab', tgl_absen='$today', ket='$ket' WHERE id_mengajar='$_GET[pelajaran]' AND id_mahasiswa='$mahasiswa_id' AND pertemuan_ke='$selected_pertemuan'");
 
                     // Cek apakah pembaruan berhasil untuk setiap mahasiswa
                     if (!$update_absen) {
