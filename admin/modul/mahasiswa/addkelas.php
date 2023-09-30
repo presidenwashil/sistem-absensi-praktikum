@@ -40,7 +40,7 @@
                                         <?php
                                         $sqlMahasiswa = mysqli_query($con, "SELECT * FROM tb_mahasiswa ORDER BY nama_mahasiswa ASC");
                                         while ($mahasiswa = mysqli_fetch_array($sqlMahasiswa)) {
-                                            echo "<option value='$mahasiswa[id_mahasiswa]'>$mahasiswa[nama_mahasiswa]</option>";
+                                            echo "<option value='$mahasiswa[id_mahasiswa]'>$mahasiswa[nama_mahasiswa] ($mahasiswa[nim])</option>";
                                         }
                                         ?>
                                     </select>
