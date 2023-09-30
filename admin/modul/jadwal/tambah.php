@@ -40,7 +40,7 @@ $semAktif = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tb_semester WHE
 								<div class="form-group">
 									<label for="kode">Kode Pelajaran</label>
 									<input name="kode_pelajaran" type="text" class="form-control" id="kode"
-										value="MPL-<?= time(); ?>" required>
+										value="MPL-<?= time(); ?>" readonly>
 								</div>
 							</div>
 							<div class="col-md-4">
