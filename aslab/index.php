@@ -246,7 +246,7 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 							</a>
 
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#sidebarLayouts">
 								<i class="fas fa-clipboard-list"></i>
 								<p>Presensi</p>
@@ -269,15 +269,19 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 									<?php } ?>
 								</ul>
 							</div>
-						</li>
+						</li> -->
+
+
 						<li class="nav-item">
-							<a href="?page=izin">
+							<a
+								href="https://docs.google.com/spreadsheets/d/15ECEaDyS5ZImOuXmojNuIArstNIWW4TPSMdOckPS4qk/edit?resourcekey#gid=704995425">
 								<i class="fa fa-exclamation-circle"></i>
 								<p>Izin Mahasiswa</p>
 							</a>
 
 						</li>
-						<li class="nav-item">
+
+						<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#rekapAbsen">
 								<i class="fas fa-list-alt"></i>
 								<p>Rekap Absen</p>
@@ -300,8 +304,9 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 									<?php } ?>
 								</ul>
 							</div>
-						</li>
-						<li class="nav-item">
+						</li> -->
+
+						<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#beritaAcara">
 								<i class="fas fa-list-alt"></i>
 								<p>Berita Acara</p>
@@ -321,7 +326,9 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li> -->
+
+
 						<li class="nav-item active mt-3">
 							<a href="logout.php" class="collapsed">
 								<i class="fas fa-arrow-alt-circle-left"></i>
@@ -351,6 +358,10 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 						include 'modul/absen/konfirmasi_izin.php';
 					} elseif ($act == 'update') {
 						include 'modul/absen/absen_kelas_update.php';
+					}
+				} elseif ($page == 'materi') {
+					if ($act == '') {
+						include 'modul/materi/materi.php';
 					}
 				} elseif ($page == 'izin') {
 					if ($act == '') {
@@ -394,16 +405,18 @@ WHERE tb_mengajar.id_aslab='$data[id_aslab]' AND tb_thajaran.status=1 AND tb_sem
 
 
 			</div>
-			<footer class="footer">
-				<div class="container">
-					<div class="copyright ml-auto">
-						&copy;
-						<?php echo date('Y'); ?> Absensi Praktikum (<a href="index.php">Raihan Presiden Washil </a> |
-						2023)
-					</div>
-				</div>
-			</footer>
 		</div>
+
+		<footer class="footer">
+			<div class="container">
+				<div class="copyright ml-auto">
+					&copy;
+					<?php echo date('Y'); ?> Absensi Praktikum (<a href="index.php">Raihan Presiden Washil </a> |
+					2023)
+				</div>
+			</div>
+		</footer>
+	</div>
 
 
 	</div>

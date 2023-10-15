@@ -18,6 +18,29 @@ if (isset($_POST['saveMahasiswa'])) {
         $nama_gambar = ''; // Atau bisa juga menggunakan NULL
     }
 
+    // Periksa apakah NIM sudah ada sebelumnya
+    $checkDuplicateNIM = mysqli_query($con, "SELECT * FROM tb_mahasiswa WHERE nim = '$_POST[nim]'");
+    if (mysqli_num_rows($checkDuplicateNIM) > 0) {
+        // NIM sudah ada
+        echo "
+        <script type='text/javascript'>
+        setTimeout(function () { 
+            swal('NIM Sudah Digunakan', 'Data mahasiswa dengan NIM tersebut sudah ada', {
+                icon : 'error',
+                buttons: {        			
+                    confirm: {
+                        className : 'btn btn-danger'
+                    }
+                },
+            });    
+        },10);  
+        window.setTimeout(function(){ 
+            window.location.replace('?page=mahasiswa');
+        } ,3000);   
+        </script>";
+        exit(); // Hentikan eksekusi script jika NIM sudah ada
+    }
+
     $saveMahasiswa = mysqli_query($con, "INSERT INTO tb_mahasiswa (nim, nama_mahasiswa, password, foto, status) VALUES ('$_POST[nim]', '$_POST[nama_mahasiswa]', '$pass', '$nama_gambar', '1') ");
 
     if ($saveMahasiswa) {
@@ -122,6 +145,5 @@ if (isset($_POST['saveMahasiswa'])) {
     } else {
         echo "Terjadi kesalahan dalam mengubah data mahasiswa.";
     }
-
 }
 ?>

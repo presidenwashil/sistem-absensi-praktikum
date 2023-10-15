@@ -90,6 +90,10 @@
 						<i class="fas fa-list-alt"></i>
 						Rekap Absen
 					</a>
+					<a href="?page=materi&pelajaran=<?= $jd['id_mengajar'] ?> " class="btn btn-warning btn-block text-left">
+						<i class="fas fa-list-alt"></i>
+						List Materi Praktikum
+					</a>
 				</div>
 			</div>
 		<?php } ?>

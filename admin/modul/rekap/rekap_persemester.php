@@ -622,37 +622,49 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
 <p></p>
 <table width="100%">
     <tr>
+        <td align="right">
+            <p>
+                <!-- Samarinda,
+                <?php echo date('d-F-Y'); ?> -->
+            </p>
+        </td>
+        <td align="right">
+            <p>
+                Samarinda,
+                <?php echo date('d-F-Y'); ?>
+            </p>
+        </td>
+    </tr>
+    <tr>
         <td align="left">
             <p></p>
-            <p> </p>
+            <p></p>
             <p>
                 Ka.Laboratorium Komputer
                 <br>
-                <!-- <img src="../../../assets/img/Group 1.png" width="200px"> -->
+                <img src="../../../assets/img/ttdketua.png" width="200px">
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
+
+
                 Ivan Haristyawan, S.T., M.M<br>
             </p>
         </td>
 
         <td align="right">
             <p>
-                Samarinda,
-                <?php echo date('d-F-Y'); ?>
+                <!-- Samarinda,
+                <?php echo date('d-F-Y'); ?> -->
             </p>
 
             <p>
                 Staf.Laboratorium Komputer
                 <br>
-                <!-- <img src="../../../assets/img/ttd staf.lab.png" width="200px"> -->
+                <img src="../../../assets/img/ttd staf.lab.png" width="200px">
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
+
+
                 Ahmad Fajri, S.Kom., M.Kom <br>
             </p>
         </td>
@@ -660,5 +672,5 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
 </table>
 
 <script>
-    window.print();
+    // window.print();
 </script>

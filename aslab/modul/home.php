@@ -18,7 +18,7 @@
 				<div class="card-body">
 					<div class="card-title">
 						<center>
-							<img src="../assets/img/logo.png" width="100">
+							<img src="../assets/img/Logo.png" width="100">
 							<br>
 							<b>LABCOM WICIDA</b>
 						</center>
