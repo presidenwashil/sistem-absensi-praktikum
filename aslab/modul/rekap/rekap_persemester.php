@@ -86,7 +86,7 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
 
 <table width="100%">
     <div style="text-align: center;">
-        <img src="../../../assets/img/stmik.png" width="200" height="200" margin="0"
+        <img src="../../../assets/img/Logo STMIK WICIDA warna.png" width="200" height="200" margin="0"
             style=" display: inline-block; vertical-align: middle;">
         <div style="display: inline-block; vertical-align: middle;">
             <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 35; margin: 0;">SEKOLAH TINGGI MANAJEMEN
@@ -643,7 +643,7 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
             <p>
                 Ka.Laboratorium Komputer
                 <br>
-                <img src="../../../assets/img/ttdketua.png" width="200px">
+                <img src="../../../assets/img/ttdketua.png" width="250px" height="150">
                 <br>
 
 
@@ -661,7 +661,7 @@ $dospem = mysqli_query($con, "SELECT * FROM tb_dospem INNER JOIN tb_dosen ON tb_
             <p>
                 Staf.Laboratorium Komputer
                 <br>
-                <img src="../../../assets/img/ttd staf.lab.png" width="200px">
+                <img src="../../../assets/img/copy-ttd staf.lab.png" width="250px" height="150">
                 <br>
 
 
